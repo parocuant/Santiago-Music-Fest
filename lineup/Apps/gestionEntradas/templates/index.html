@@ -1,0 +1,191 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<!-- Carga de css / js -->
+<script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/validar.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <script>
+          </script>
+            <p id="demo" class="contador"></p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav id="topNav" class="navbar fixed-top navbar-toggleable-sm navbar-inverse bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        ☰
+    </button>
+    <div class="navbar-collapse collapse float-right">
+        <ul class="nav navbar-nav ">
+            <!--https://www.facebook.com/bootsnipp-->
+            <a href="#"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+            <a href="#"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+            <a href="#"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+            <a href="#"><i id="social-ig" class="fa fa-instagram fa-3x social"></i></a>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- Carrusel artistas -->
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+
+    {% if object_list %}
+      {% for artista in object_list %}
+        {% if artista.tipo_Artista == 'H' or  artista.tipo_Artista == 'S' %}
+        <div class="swiper-slide">
+          <div class="imgBx">
+        {% with 'media/'|add:artista.nombreArtista|add:'.jpg' as image_path %}
+            <img src="{% static image_path %}" alt="{{artista.nombreArtista}}">
+        {% endwith %}
+          </div>
+        <div class="details">
+          <h3>{{artista.nombreArtista}}<br><span>{{ artista.tipo_Artista }}</span></h3>
+        </div>
+      </div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+  <p>Artistas no encontrados.</p>
+    {% endif %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+<br>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows : true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+</script>
+
+
+<div class="container ">
+    <div class="row pricing">
+    <div class="col-md-3 ">
+      <div class="well ">
+        <h3><b>Preventa 1</b></h3>
+        <hr>
+        <p>Lockers </p>
+        <hr>
+        <p>Estacionamiento </p>
+        <hr>
+        <p><b> $75.000</b></p>
+        <hr>
+        <a href="formulario.html" class="btn btn-danger disabled">Sold Out!</a>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="well">
+          <h3><b>Preventa 2</b></h3>
+          <hr>
+          <p>Lockers</p>
+          <hr>
+          <p>Estacionamiento</p>
+          <hr>
+          <p><b> $105.000</b></p>
+          <hr>
+          <a href="formulario.html" class="btn btn-danger disabled">Sold Out!</a>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+          <div class="well">
+            <h3><b>Preventa 3</b></h3>
+            <hr>
+            <p>Lockers</p>
+            <hr>
+            <p>Estacionamiento</p>
+            <hr>
+            <p><b> $135.000</b></p>
+            <hr>
+            <a href="formulario.html" class="btn btn-primary">Comprar</a>
+          </div>
+        </div>
+        <div class="col-md-3">
+            <div class="well">
+              <h3><b>Premium</b></h3>
+              <br>
+              <p>Estacionamiento/Lockers</p>
+              <br>
+              <p>Barra Libre/Acceso Total</p>
+              <br>
+              <p>Meet and greet</p>
+              <p><b> $250.000</b></p>
+              <hr>
+              <a href="formulario.html" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+</div>
+
+<!-- // -->
+
+<!-- FOOTER-->
+
+<footer class="text-center footer-style">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 footer-col">
+                <h3>Dirección</h3>
+                <p>
+                    Santiago-chile <br />
+                    Avenida siempre viva 742
+                </p>
+            </div>
+            <div class="col-md-4 footer-col">
+                <h3>Nuestras redes</h3>
+                <ul class="list-inline">
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                    </li>
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                    </li>
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">UP!</button>
+{% endblock %}
