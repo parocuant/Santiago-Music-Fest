@@ -124,6 +124,4 @@ USE_TZ = True
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-STATIC_DIR = "/home/procuant/lineup/Apps/gestionEntradas/static"
-
 STATICFILES_DIRS = [STATIC_DIR, ]
